@@ -51,7 +51,7 @@ const MyCart = () => {
             <input type="checkbox" className="checkbox" />
           </label>
         </th> */}
-        <th>Name</th>
+        <th>Name </th>
         <th>Email Address</th>
         <th>Coffees</th>
         <th>Price</th>

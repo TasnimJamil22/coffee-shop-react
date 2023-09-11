@@ -1,7 +1,7 @@
 import React from 'react';
 
-const Order = ({order,handleDeleteOrder}) => {
-    const {_id,email,customer,name,price,img,date} = order;
+const Order = ({order,handleDeleteOrder,handleConfirmOrder}) => {
+    const {_id,email,customer,name,price,img,date,status} = order;
     return (
         <tr>
         {/* <th>
@@ -32,6 +32,14 @@ const Order = ({order,handleDeleteOrder}) => {
         <td>{date}</td>
         <th>
           <button onClick={()=>handleDeleteOrder(_id)} className="btn btn-ghost rounded-full">X</button>
+        </th>
+        <th>
+          {
+            status?  
+            <button onClick={()=>handleConfirmOrder(_id)} className="btn btn-ghost rounded-full text-success">Confirm</button>
+            :
+            <button onClick={()=>handleConfirmOrder(_id)} className="btn btn-ghost rounded-full">Please Confirm</button>
+          }
         </th>
       </tr>
     );

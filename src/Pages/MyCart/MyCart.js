@@ -39,6 +39,28 @@ const MyCart = () => {
     }
     }
 
+    const handleConfirmOrder = id => {
+         fetch(`http://localhost:5000/mycart/${id}`,{
+          method:'PATCH',
+          headers:{
+            'content-type':'application/json'
+          },
+          body: JSON.stringify({status:'confirm'})
+         })
+         .then(res=> res.json())
+         .then(data => {
+          console.log(data);
+          if(data.modifiedCount > 0){
+            const remaining = orders.filter(order => order._id !== id);
+            const updated = orders.find(order => order._id === id);
+            const newArray = [updated, ...remaining];
+            updated.status = 'confirm';
+            setOrders(newArray);
+          }
+         })
+
+    }
+
     return (
          
            <div className="overflow-x-auto lg:w-2/3 sm:2/5 mx-auto">
@@ -57,6 +79,7 @@ const MyCart = () => {
         <th>Price</th>
         <th>Date</th>
         <th>Remove</th>
+        <th>Confirm Order</th>
       </tr>
     </thead>
     <tbody>
@@ -65,6 +88,7 @@ const MyCart = () => {
           key={order.key}
           order={order}
           handleDeleteOrder={handleDeleteOrder}
+          handleConfirmOrder={handleConfirmOrder}
           ></Order>)
       }
     </tbody>

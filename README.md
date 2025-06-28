@@ -1,7 +1,7 @@
  
 
-```markdown
-# CoffeeShop Website
+ 
+### CoffeeShop Website
 
 This project consists of two parts: a React frontend and a Node.js backend with Express and MongoDB.
 
